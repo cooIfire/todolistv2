@@ -1,0 +1,53 @@
+ListView.builder(
+          itemCount: x.length,
+          itemBuilder: (BuildContext context, int index) {
+            //bool check = bool.parse(x[index][1].toString());
+            return Container(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: ListTile(
+                tileColor: x[index][1] == true
+                    ? const Color.fromARGB(255, 141, 193, 245)
+                    : Colors.grey,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  side: BorderSide(style: BorderStyle.none),
+                ),
+                trailing: IconButton(
+                    onPressed: () {
+                      x.remove(x[index]);
+                      print('deleted item');
+                      setState(() {});
+                    },
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Color.fromARGB(255, 255, 17, 0),
+                    )),
+                leading: IconButton(
+                  onPressed: () {
+                    var bul = x[index][1];
+                    x[index][1] = !bul;
+                    setState(() {});
+                  },
+                  icon: x[index][1] == true
+                      ? const Icon(
+                          Icons.check_box,
+                          color: Colors.black,
+                        )
+                      : const Icon(
+                          Icons.square,
+                          color: Colors.black,
+                        ),
+                ),
+                title: Text(x[index][0].toString(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24,
+                      decoration: x[index][1] == true
+                          ? TextDecoration.lineThrough
+                          : null,
+                    )),
+              ),
+            );
+          },
+        ),
+      
